@@ -1,0 +1,112 @@
+{
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "name": "bootsrtap-menu",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "standalone": false
+    },
+    "@schematics/angular:directive": {
+      "standalone": false
+    },
+    "@schematics/angular:pipe": {
+      "standalone": false
+    }
+  },
+  "sourceRoot": "src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/bootsrtap-menu",
+        "index": "src/index.html",
+        "browser": "src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.css",
+          "node_modules/eva-icons/style/eva-icons.css",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
+          "public/scss/sidebar-menu.scss",
+          "src/styles.scss"
+        ],
+        "scripts": [
+          "node_modules/jquery/dist/jquery.js",
+          "node_modules/@popperjs/core/dist/umd/popper.js",
+          "node_modules/bootstrap/dist/js/bootstrap.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "bootsrtap-menu:build:production"
+        },
+        "development": {
+          "buildTarget": "bootsrtap-menu:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+        ],
+        "tsConfig": "tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "src/styles.scss"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<ng-container *ngrxLet="selectedMenu$ | async as menu">
+  <div id="sidebar" class="px-3 py-4 hero d-flex flex-column h-100">
+    <nav class="nav d-flex flex-column">
+      <ul class="list-group">
+        <li
+          *ngFor="let item of menuItems; let i = index"
+          class="list-group-item p-0 mb-1"
+        >
+          <button
+            (click)="selectedMenu(item)"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#menu' + i"
+            type="button"
+            [ngClass]="{
+              active: menu?.id === item.id,
+              'no-children': !item.children,
+            }"
+            class="list-group-item list-group-item-action d-flex justify-content-between rounded-1"
+          >
+            <div class="d-flex align-items-center fw-bold">
+              <i class="eva eva-{{ item.icon }}-outline me-2 fs-5"></i>
+              <span>{{ item.name }}</span>
+            </div>
+          </button>
+          <ul
+            [ngClass]="{ show: menu?.id === item.id }"
+            data-bs-parent="#sidebar"
+            [attr.id]="'menu' + i"
+            [hidden]="!item.children"
+            class="list-group list-group-flush collapse mx-0"
+          >
+            <li
+              *ngFor="let child of item.children"
+              class="list-group-item px-0"
+            >
+              {{ child.name }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="mt-auto">Bottom</div>
+  </div>
+</ng-container>
