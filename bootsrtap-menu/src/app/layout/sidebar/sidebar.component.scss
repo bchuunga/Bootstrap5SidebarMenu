@@ -1,0 +1,20 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 120px;
+}
+.nav-container,
+ng-scrollbar {
+  min-height: calc(100vh - 120px);
+  max-height: calc(100vh - 120px);
+}
+ng-scrollbar {
+  --scrollbar-size: 8px;
+  --scrollbar-thumb-color: #28df93;
+  --scrollbar-thumb-hover-color: rgb(231, 46, 46);
+  --scrollbar-border-radius: 4px;
+}
